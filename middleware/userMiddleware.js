@@ -1,6 +1,13 @@
 import bcrypt from "bcrypt"
 import validator from "validator"
+import jwt from "jsonwebtoken"
 import User from "../models/user.js"
+
+
+
+const generateJwt = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET)
+}
 
 export const registerUsers = async (req, res) => {
 
@@ -9,7 +16,7 @@ export const registerUsers = async (req, res) => {
 
 
     if (!name && !email && !password && !role) {
-        return res.status(400).json({ error: "required fields missing" })
+        return res.status(400).json({ error: "Required fields missing" })
     }
 
     if (!name) {
@@ -29,11 +36,13 @@ export const registerUsers = async (req, res) => {
     if (!password) {
         return res.status(400).json({ error: "Password is required" })
     }
+
     if (!role) {
         return res.status(400).json({ error: "Role is required" })
     }
 
     const roles = ["ADMIN", "ANALYST", "VIEWER"];
+
     if (!roles.includes(role)) {
         return res.status(400).json({ error: "Invalid Role" })
     }
@@ -45,20 +54,23 @@ export const registerUsers = async (req, res) => {
 
     const isUser = await User.findOne({ email: email }) || null
 
-    console.log(isUser)
+
 
     if (isUser) {
         return res.status(409).json({ error: "Email already registered" })
     }
 
     const hashedPassword = await bcrypt.hash(password, 10)
+
     const createUser = User({
         name: name,
         email: email,
         password: hashedPassword,
         role: role
     })
+
     await createUser.save()
+
     return res.status(201).json({ success: "User registered successfully" })
 
 
@@ -71,17 +83,43 @@ export const registerUsers = async (req, res) => {
 
 export const loginUsers = async (req, res) => {
 
-    const { email, password } = req.body
+    const { email = undefined, password = undefined } = req.body
+
+
+    if (!email && !password) {
+        return res.status(400).json({ error: "Required fields missing" })
+    }
+
+    if (!email) {
+        return res.status(400).json({ error: "Email is required" })
+    }
+
+    if (!validator.isEmail(email)) {
+        return res.status(400).json({ error: "Invalid email format" })
+    }
+
+    if (!password) {
+        return res.status(400).json({ error: "Password is required" })
+    }
+
     const isUser = await User.findOne({ email: email })
-    console.log(isUser)
+
     if (!isUser) {
-        return res.status(400).json({ message: "User is not registered." })
+        return res.status(400).json({ error: "User not found" })
     }
 
     const isTruePassword = await bcrypt.compare(password, isUser.password)
+
+
     if (!isTruePassword) {
-        return res.status(400).json({ message: "invalid password" })
+        return res.status(400).json({ error: "Invalid credentials" })
     }
+
+    const jwtToken = generateJwt({ email })
+
+    return res.status(200).json({
+        "jwt_token": jwtToken
+    })
 
 
 

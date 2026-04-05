@@ -1,6 +1,6 @@
 ### 1. User and Role Management
 
-### API 1 User Registration
+### API 1 User Registration  - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -14,7 +14,7 @@ Content-Type:application/json
 
 
 
-### API 2 User Register Missing Name 
+### API 2 User Register Missing Name   - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -26,7 +26,7 @@ Content-Type:application/json
 }
 
 
-### API 3 User Register Missing Email
+### API 3 User Register Missing Email  - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -37,7 +37,7 @@ Content-Type:application/json
 }
 
 
-### API 4 User Register Missing Password
+### API 4 User Register Missing Password  - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -47,7 +47,7 @@ Content-Type:application/json
     "role":"ADMIN"
 }
 
-### API 5 User Register Missing Role 
+### API 5 User Register Missing Role   - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -58,7 +58,7 @@ Content-Type:application/json
 }
 
 
-### API 6 User Register Invalid Role 
+### API 6 User Register Invalid Role   - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -72,7 +72,7 @@ Content-Type:application/json
 
 
 
-### API 7 User Register Weak Password 
+### API 7 User Register Weak Password   - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -85,7 +85,7 @@ Content-Type:application/json
 
 
 
-### API 8 User Register Invalid Email Format 
+### API 8 User Register Invalid Email Format    - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -99,7 +99,7 @@ Content-Type:application/json
 
 
 
-### API 9 User Register User (Duplicate Email)
+### API 9 User Register User Duplicate Email   - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -114,7 +114,7 @@ Content-Type:application/json
 
 
 
-### API 10 User Register User (Empty  Body)
+### API 10 User Register User Empty  Body   - completed
 POST http://localhost:5000/api/user/register
 Content-Type:application/json
 
@@ -123,3 +123,76 @@ Content-Type:application/json
 }
 
 
+
+### API 11 User Login Success - completed
+POST http://localhost:5000/api/user/register
+Content-Type:application/json
+
+{
+    "email":"premkumarjp45@gmail.com",
+    "password":"premkumar45"
+}
+
+
+
+### API 12 User Login (Empty  Body) - completed
+POST http://localhost:5000/api/user/login
+Content-Type:application/json
+
+{
+
+}
+
+
+
+### API 13 User Login Missing Email  - completed
+POST http://localhost:5000/api/user/login
+Content-Type:application/json
+
+{
+
+    "password":"premkumar45"
+}
+
+
+### API 14 User Login Missing Password - completed
+POST http://localhost:5000/api/user/login
+Content-Type:application/json
+
+{
+    "email":"premkumarjp45@gmail.com"
+   
+}
+
+### API 15 User Login Email Invalid Format -completed
+POST http://localhost:5000/api/user/login
+Content-Type:application/json
+
+{
+    "email":"premkumaskdakhsdkashkfh",
+    "password":"premkumar45"
+   
+}
+
+
+### API 16 User Login Invalid User - completed
+POST http://localhost:5000/api/user/login
+Content-Type:application/json
+
+{
+    "email":"premkumas@gamil.com",
+    "password":"premkumar45"
+   
+}
+
+
+
+### API 17 User Login Incorrect Password - completed
+POST http://localhost:5000/api/user/login
+Content-Type:application/json
+
+{
+   "email":"premkumarjp45@gmail.com",
+    "password":"premkumar45dasdasddasfad"
+   
+}
