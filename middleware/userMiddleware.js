@@ -15,7 +15,7 @@ export const registerUsers = async (req, res) => {
 
 
 
-    if (!name && !email && !password && !role) {
+    if (!name && !email && !password && !role && !status) {
         return res.status(400).json({ error: "Required fields missing" })
     }
 
@@ -52,7 +52,7 @@ export const registerUsers = async (req, res) => {
     }
 
     const statusList = ["active", "inactive"]
-    if (statusList.includes(status)) {
+    if (!statusList.includes(status)) {
         return res.status(400).json({ error: "Invalid status" })
     }
 

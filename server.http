@@ -8,7 +8,8 @@ Content-Type:application/json
     "name":"Prem Kumar",
     "email":"premkumarjp45@gmail.com",
     "password":"premkumar45",
-    "role":"ADMIN"
+    "role":"ADMIN",
+    "status":"active"
 }
 
 
@@ -22,7 +23,8 @@ Content-Type:application/json
     
     "email":"premkumarjp45@gmail.com",
     "password":"premkumar45",
-    "role":"ADMIN"
+    "role":"ADMIN",    
+    "status":"active"
 }
 
 
@@ -33,7 +35,9 @@ Content-Type:application/json
 {
     "name":"Prem Kumar",   
     "password":"premkumar45",
-    "role":"ADMIN"
+    "role":"ADMIN",
+    "status":"active"
+
 }
 
 
@@ -44,7 +48,9 @@ Content-Type:application/json
 {
     "name":"Prem Kumar",
     "email":"premkumarjp45@gmail.com",   
-    "role":"ADMIN"
+    "role":"ADMIN",
+    "status":"active"
+
 }
 
 ### API 5 User Register Missing Role   - completed
@@ -54,7 +60,9 @@ Content-Type:application/json
 {
     "name":"Prem Kumar",
     "email":"premkumarjp45@gmail.com",
-    "password":"premkumar45"
+    "password":"premkumar45",
+    "status":"active"
+
 }
 
 
@@ -66,8 +74,38 @@ Content-Type:application/json
     "name":"Prem Kumar",
     "email":"premkumarjp45@gmail.com",
     "password":"premkumar45",
-    "role":"INVALIDROLE"
+    "role":"INVALIDROLE",
+    "status":"active"
 }
+
+
+
+
+### API 18 User Register Missing Status   - completed
+POST http://localhost:5000/api/user/register
+Content-Type:application/json
+
+{
+    "name":"Prem Kumar",
+    "email":"premkumarjp45@gmail.com",
+    "password":"premkumar45",
+    "role":"ADMIN"
+    
+}
+
+
+### API 19 User Register Invalid Status   - completed
+POST http://localhost:5000/api/user/register
+Content-Type:application/json
+
+{
+    "name":"Prem Kumar",
+    "email":"premkumarjp45@gmail.com",
+    "password":"premkumar45",
+    "role":"ADMIN",
+    "status":"shdfkhsakf"
+}
+
 
 
 
@@ -196,3 +234,42 @@ Content-Type:application/json
     "password":"premkumar45dasdasddasfad"
    
 }
+
+
+
+
+
+### 2. Financial Records Management
+/*/
+Creating records
+Viewing records
+Updating records
+Deleting records
+Filtering records based on criteria such as date, category, or type
+categories like Salary , food , Travel
+/*/
+
+### Admin: Can create, update, and manage records and users
+
+
+### API 20 Get All users  with Admin JWT TOKEN 
+POST http://localhost:5000/api/finance/users
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
+
+
+
+### API 21 Get All users  with Admin Without JWT TOKEN -completed
+POST http://localhost:5000/api/finance/users
+
+
+
+### API 22 Get All users  with Admin Invalid JWT TOKEN - completed
+POST http://localhost:5000/api/finance/users
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW
+
+### API 23 Get All users  with Non - Admin JWT TOKEN 
+POST http://localhost:5000/api/finance/users
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9W1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
+
+
+
