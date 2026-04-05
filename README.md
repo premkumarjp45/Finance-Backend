@@ -1,12 +1,20 @@
-1. User and Role Management APIs
-API 1
-Path: /api/user/register
-Method: POST
-Description:
+# 1. User and Role Management APIs
+
+---
+
+### API 1
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Creates a new user with role and status after validating input fields.
 
-Request
+#### Request
+
+```
 {
   "name": "Prem Kumar",
   "email": "prem@gmail.com",
@@ -14,187 +22,390 @@ Request
   "role": "ADMIN",
   "status": "active"
 }
-Response
+```
+
+#### Response
+
+```
 User registered successfully
-API 2
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 2
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when required fields are missing.
 
-Request
+#### Request
+
+```
 {}
-Response
+```
+
+#### Response
+
+```
 Required fields missing
-API 3
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 3
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when name is missing.
 
-Response
+#### Response
+
+```
 Name is required
-API 4
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 4
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when email is missing.
 
-Response
+#### Response
+
+```
 Email is required
-API 5
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 5
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when email format is invalid.
 
-Response
+#### Response
+
+```
 Invalid email format
-API 6
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 6
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when password is missing.
 
-Response
+#### Response
+
+```
 Password is required
-API 7
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 7
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when password is less than 6 characters.
 
-Response
+#### Response
+
+```
 Password must be at least 6 characters
-API 8
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 8
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when role is missing.
 
-Response
+#### Response
+
+```
 Role is required
-API 9
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 9
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when role is invalid.
 
-Response
+#### Response
+
+```
 Invalid Role
-API 10
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 10
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when status is missing.
 
-Response
+#### Response
+
+```
 Status is required
-API 11
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 11
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when status is invalid.
 
-Response
+#### Response
+
+```
 Invalid status
-API 12
-Path: /api/user/register
-Method: POST
-Description:
+```
+
+---
+
+### API 12
+
+#### Path: `/api/user/register`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when email is already registered.
 
-Response
+#### Response
+
+```
 Email already registered
-API 13
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 13
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Authenticates user and returns JWT token.
 
-Request
+#### Request
+
+```
 {
   "email": "prem@gmail.com",
   "password": "prem1234"
 }
-Response
+```
+
+#### Response
+
+```
 {
   "jwt_token": "token_here"
 }
-API 14
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 14
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when request body is empty.
 
-Request
+#### Request
+
+```
 {}
-Response
+```
+
+#### Response
+
+```
 Required fields missing
-API 15
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 15
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when email is missing.
 
-Response
+#### Response
+
+```
 Email is required
-API 16
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 16
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when email format is invalid.
 
-Response
+#### Response
+
+```
 Invalid email format
-API 17
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 17
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when password is missing.
 
-Response
+#### Response
+
+```
 Password is required
-API 18
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 18
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when user does not exist.
 
-Response
+#### Response
+
+```
 User not found
-API 19
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 19
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when password is incorrect.
 
-Response
+#### Response
+
+```
 Invalid credentials
-API 20
-Path: /api/user/login
-Method: POST
-Description:
+```
+
+---
+
+### API 20
+
+#### Path: `/api/user/login`
+
+#### Method: `POST`
+
+#### Description:
 
 Returns error when user account is inactive.
 
-Response
+#### Response
+
+```
 User inactive
+```
+
+---
+
+# Summary
+
+```
+Total User APIs = 20
+
+Covers:
+- Registration
+- Login
+- Validation
+- Edge cases
+- Security scenarios
+```
