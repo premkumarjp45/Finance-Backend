@@ -252,8 +252,8 @@ categories like Salary , food , Travel
 ### Admin: Can create, update, and manage records and users
 
 
-### API 20 Get All users  with Admin JWT TOKEN 
-POST http://localhost:5000/api/finance/users
+### API 20 Get All users  with Admin JWT TOKEN  -completed
+GET http://localhost:5000/api/finance/users
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
 
 
@@ -267,9 +267,231 @@ POST http://localhost:5000/api/finance/users
 POST http://localhost:5000/api/finance/users
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW
 
-### API 23 Get All users  with Non - Admin JWT TOKEN 
+### API 23 Get All users  with Non - Admin JWT TOKEN  -completed
 POST http://localhost:5000/api/finance/users
 Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9W1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
 
 
 
+/*/
+
+I used Sample Data 
+[
+  {
+    "name": "Rahul Sharma",
+    "email": "rahul.sharma01@gmail.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Sneha Reddy",
+    "email": "sneha.reddy02@yahoo.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Arjun Verma",
+    "email": "arjun.verma03@outlook.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Kiran Kumar",
+    "email": "kiran.kumar04@gmail.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Meena Iyer",
+    "email": "meena.iyer05@yahoo.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Vikas Singh",
+    "email": "vikas.singh06@outlook.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Pooja Nair",
+    "email": "pooja.nair07@gmail.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Rohit Gupta",
+    "email": "rohit.gupta08@yahoo.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Anita Desai",
+    "email": "anita.desai09@outlook.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Deepak Yadav",
+    "email": "deepak.yadav10@gmail.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Swathi Rao",
+    "email": "swathi.rao11@yahoo.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Manoj Kumar",
+    "email": "manoj.kumar12@outlook.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Kavya Reddy",
+    "email": "kavya.reddy13@gmail.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Suresh Babu",
+    "email": "suresh.babu14@yahoo.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Divya Sharma",
+    "email": "divya.sharma15@outlook.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Naresh Patel",
+    "email": "naresh.patel16@gmail.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Anjali Singh",
+    "email": "anjali.singh17@yahoo.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Ravi Teja",
+    "email": "ravi.teja18@outlook.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Lakshmi Devi",
+    "email": "lakshmi.devi19@gmail.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Gopal Krishna",
+    "email": "gopal.krishna20@yahoo.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Keerthi Rani",
+    "email": "keerthi.rani21@outlook.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Praveen Kumar",
+    "email": "praveen.kumar22@gmail.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Sindhu Priya",
+    "email": "sindhu.priya23@yahoo.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  },
+  {
+    "name": "Teja Reddy",
+    "email": "teja.reddy24@outlook.com",
+    "password": "premkumar45",
+    "role": "VIEWER",
+    "status": "active"
+  },
+  {
+    "name": "Harish Kumar",
+    "email": "harish.kumar25@gmail.com",
+    "password": "premkumar45",
+    "role": "ANALYST",
+    "status": "active"
+  }
+]
+
+/*/
+
+
+
+### API 24 Get User userId  with Admin JWT TOKEN -completed
+GET http://localhost:5000/api/finance/users/69d25ce4ac80a5bd428951c5
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
+
+
+### API 25 Get User userId  without  Admin JWT TOKEN  --completed
+GET http://localhost:5000/api/finance/users/69d25ce4ac80a5bd428951c5
+
+
+
+
+### API 26 Update User Role with  userId  --   Admin JWT TOKEN  --completed 
+POST http://localhost:5000/api/finance/users/69d25ce4ac80a5bd428951c5
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
+Content-Type:application/json
+{
+  "role":"ANALYST"
+}
+
+
+
+### API 27 Update User Status with  userId  --   Admin JWT TOKEN -completed
+POST http://localhost:5000/api/finance/users/69d25ce4ac80a5bd428951c5/inactive
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
+Content-Type:application/json
+
+{
+  "status":"inactive"
+}
+
+
+
+
+
+### API 28 Delete User with  userId  --   Admin JWT TOKEN -completed
+DELETE http://localhost:5000/api/finance/users/69d25ce4ac80a5bd428951c5
+Authorization:Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByZW1rdW1hcmpwNDVAZ21haWwuY29tIiwiaWF0IjoxNzc1Mzg3NjE3fQ.DOhd5EbajLGCUrp8C25coj4W8U4_hH1KMn-7ZxKUFRA
