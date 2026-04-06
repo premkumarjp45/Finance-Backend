@@ -11,7 +11,6 @@ export const createFinanceRecord = async (req, res) => {
     let { amount = undefined, type = undefined, category = undefined, description = undefined } = req.body
     const user = req.user
     const { userId } = user
-    amount = amount.trim()
     type = type.trim()
     category = category.trim()
     description = description.trim()
@@ -19,18 +18,18 @@ export const createFinanceRecord = async (req, res) => {
     if (amount === "" && type === "" && category === "" && description === "") {
         return res.status(400).json({ error: "Required fields missing" })
     }
-    if (amount === undefined || amount === "") {
+    if (amount === undefined) {
         return res.status(400).json({ error: "Required amount" })
     }
     else if (type === undefined) {
         return res.status(400).json({ error: "Required type" })
     } else if (category === undefined) {
         return res.status(400).json({ error: "Required category" })
-    } else if (description === description) {
+    } else if (description === undefined) {
         return res.status(400).json({ error: "Required description" })
-    } else if (["INCOME", "EXPENSE"].includes(type) === undefined) {
+    } else if (!["INCOME", "EXPENSE"].includes(type)) {
         return res.status(400).json({ error: "Invalid type" })
-    } else if (amount < 0 || amount === undefined) {
+    } else if (amount < 0) {
         return res.status(400).json({ error: "Amount must be > 0" })
     }
 
@@ -43,7 +42,7 @@ export const createFinanceRecord = async (req, res) => {
     })
     await newRecord.save()
 
-    return res.status(201).json({ message: "Create finance record" })
+    return res.status(201).json({ message: "Record created successfully" })
 }
 
 
@@ -55,6 +54,11 @@ export const getAllRecords = async (req, res) => {
 
         // Get Admin || Analyst || Viewer Records
         const getAllRecords = await Finance.find({ userId: userId })
+
+        if (getAllRecords.length === 0) {
+            return res.status(404).json({ error: "Records not found" })
+        }
+
 
         const filteredRecords = getAllRecords.map((item) => ({
             id: item._id,
@@ -78,7 +82,7 @@ export const getSingleRecord = async (req, res) => {
         const { userId } = req.user
         const isRecord = await Finance.findOne({ _id: recordId, userId: userId })
 
-        if (isRecord === undefined) {
+        if (isRecord === null) {
             return res.status(404).json({ error: "Record not found" })
         }
         return res.status(200).json({
@@ -106,7 +110,7 @@ export const updateRecord = async (req, res) => {
         const { userId } = req.user
         const isRecord = await Finance.findOne({ _id: recordId, userId: userId })
 
-        if (isRecord === undefined) {
+        if (isRecord === null) {
             return res.status(404).json({ error: "Record not Found" })
         }
         const { amount = undefined, type = undefined, category = undefined, description = undefined } = req.body
@@ -115,14 +119,14 @@ export const updateRecord = async (req, res) => {
             return res.status(400).json({ error: "Required fields missing" })
 
         } else if (amount !== undefined && type !== undefined && category !== undefined && description !== undefined) {
-            if (["INCOME", "EXPENSE"].includes(type) === undefined) {
+            if (!["INCOME", "EXPENSE"].includes(type)) {
                 return res.status(400).json({ error: "Invalid type" })
             }
             await Finance.updateOne({ _id: recordId, userId: userId }, { $set: { type: type, amount: amount, category: category, description } })
             return res.status(200).json({ success: "Record updated amount,type,category and description successfully" })
 
         } else if (amount !== undefined && type !== undefined && category === undefined && description === undefined) {
-            if (["INCOME", "EXPENSE"].includes(type) === undefined) {
+            if (!["INCOME", "EXPENSE"].includes(type)) {
                 return res.status(400).json({ error: "Invalid type" })
             }
             await Finance.updateOne({ _id: recordId, userId: userId }, { $set: { type: type, amount: amount } })
@@ -147,7 +151,7 @@ export const updateRecord = async (req, res) => {
             return res.status(200).json({ success: "Record updated type,category successfully" })
 
         } else if (amount === undefined && type !== undefined && category === undefined && description !== undefined) {
-            if (["INCOME", "EXPENSE"].includes(type) === undefined) {
+            if (!["INCOME", "EXPENSE"].includes(type)) {
                 return res.status(400).json({ error: "Invalid type" })
             }
             await Finance.updateOne({ _id: recordId, userId: userId }, { $set: { type: type, description: description } })
@@ -159,7 +163,7 @@ export const updateRecord = async (req, res) => {
             return res.status(200).json({ success: "Record updated category,description successfully" })
 
         }
-        else if (amount > 0 || amount !== undefined) {
+        else if (amount !== undefined) {
             await Finance.updateOne({ _id: recordId, userId: userId }, { $set: { amount: amount } })
             return res.status(200).json({ success: "Record updated amount successfully" })
         } else if (type) {
@@ -204,7 +208,7 @@ export const deleteRecord = async (req, res) => {
         const { userId } = req.user
         const isRecord = await Finance.findOne({ _id: recordId, userId: userId })
 
-        if (!isRecord || isRecord === undefined) {
+        if (!isRecord || isRecord === null) {
             return res.status(404).json({ error: "Record not Found" })
         }
 
@@ -228,7 +232,7 @@ export const filterRecords = async (req, res) => {
 
 
         const { type = undefined, category = undefined, startDate = undefined, endDate = undefined } = req.query
-
+        const { userId } = req.user
         let filter = { userId: userId }
         if (type) {
             filter.type = type

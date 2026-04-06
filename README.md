@@ -409,3 +409,343 @@ Covers:
 - Edge cases
 - Security scenarios
 ```
+
+
+
+# 2. Financial Records Management APIs
+
+---
+
+### API 1
+
+#### Path: `/api/finance/create-record`
+
+#### Method: `POST`
+
+#### Description:
+
+Creates a new financial record. Only Admin can create records.
+
+#### Request
+
+```
+{
+  "amount": 5000,
+  "type": "INCOME",
+  "category": "SALARY",
+  "description": "Monthly salary"
+}
+```
+
+#### Response
+
+```
+Record created successfully
+```
+
+---
+
+### API 2
+
+#### Path: `/api/finance/create-record`
+
+#### Method: `POST`
+
+#### Description:
+
+Returns error when required fields are missing.
+
+#### Response
+
+```
+Required fields missing
+```
+
+---
+
+### API 3
+
+#### Path: `/api/finance/create-record`
+
+#### Method: `POST`
+
+#### Description:
+
+Returns error when amount is missing.
+
+#### Response
+
+```
+Required amount
+```
+
+---
+
+### API 4
+
+#### Path: `/api/finance/create-record`
+
+#### Method: `POST`
+
+#### Description:
+
+Returns error when type is invalid.
+
+#### Response
+
+```
+Invalid type
+```
+
+---
+
+### API 5
+
+#### Path: `/api/finance/records`
+
+#### Method: `GET`
+
+#### Description:
+
+Returns all financial records of the logged-in user.
+
+#### Response
+
+```
+[
+  {
+    "id": "recordId",
+    "amount": 5000,
+    "type": "INCOME",
+    "category": "SALARY",
+    "description": "Monthly salary"
+  }
+]
+```
+
+---
+
+### API 6
+
+#### Path: `/api/finance/records`
+
+#### Method: `GET`
+
+#### Description:
+
+Returns error when records are not found.
+
+#### Response
+
+```
+Records not found
+```
+
+---
+
+### API 7
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `GET`
+
+#### Description:
+
+Returns a single financial record.
+
+#### Response
+
+```
+{
+  "id": "recordId",
+  "amount": 5000,
+  "type": "INCOME",
+  "category": "SALARY",
+  "description": "Monthly salary"
+}
+```
+
+---
+
+### API 8
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `GET`
+
+#### Description:
+
+Returns error when record is not found.
+
+#### Response
+
+```
+Record not found
+```
+
+---
+
+### API 9
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `PUT`
+
+#### Description:
+
+Updates a financial record. Only Admin can update.
+
+#### Request
+
+```
+{
+  "amount": 6000
+}
+```
+
+#### Response
+
+```
+Record updated successfully
+```
+
+---
+
+### API 10
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `PUT`
+
+#### Description:
+
+Returns error when no fields are provided.
+
+#### Response
+
+```
+Required fields missing
+```
+
+---
+
+### API 11
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `PUT`
+
+#### Description:
+
+Returns error when record is not found.
+
+#### Response
+
+```
+Record not found
+```
+
+---
+
+### API 12
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `DELETE`
+
+#### Description:
+
+Deletes a financial record. Only Admin can delete.
+
+#### Response
+
+```
+Record deleted successfully
+```
+
+---
+
+### API 13
+
+#### Path: `/api/finance/record/:recordId`
+
+#### Method: `DELETE`
+
+#### Description:
+
+Returns error when record is not found.
+
+#### Response
+
+```
+Record not found
+```
+
+---
+
+### API 14
+
+#### Path: `/api/finance/filter-records`
+
+#### Method: `GET`
+
+#### Description:
+
+Filters financial records based on query parameters.
+
+---
+
+#### Scenario 1: Filter by Type
+
+```
+/api/finance/filter-records?type=INCOME
+```
+
+---
+
+#### Scenario 2: Filter by Category
+
+```
+/api/finance/filter-records?category=FOOD
+```
+
+---
+
+#### Scenario 3: Filter by Date Range
+
+```
+/api/finance/filter-records?startDate=2026-04-01&endDate=2026-04-05
+```
+
+---
+
+#### Response
+
+```
+[
+  {
+    "id": "recordId",
+    "amount": 200,
+    "type": "EXPENSE",
+    "category": "FOOD",
+    "description": "Lunch"
+  }
+]
+```
+
+---
+
+# Summary
+
+```
+Total APIs: 14+
+
+Features:
+- Create records
+- View records
+- Update records
+- Delete records
+- Filter records
+- Role-based access control
+- Input validation
+```
