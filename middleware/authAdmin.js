@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken"
-import User from "../models/user.js"
 
 
 
@@ -8,72 +7,61 @@ import User from "../models/user.js"
 
 export const authAdmin = async (req, res, next) => {
 
-    const authHeaders = req.headers['authorization']
-    if (!authHeaders) {
-        return res.status(401).json({ error: "Missing JWT Token" })
-    }
-    const jwtToken = authHeaders.split(" ")[1]
 
-    let user;
-    jwt.verify(jwtToken, process.env.JWT_SECRET, (error, payload) => {
-        if (error) {
-            return res.status(401).json({ error: "Invalid JWT Token" })
+    try {
+
+        const authHeaders = req.headers['authorization']
+        if (!authHeaders) {
+            return res.status(401).json({ error: "Missing JWT Token" })
         }
-        const { email, userId, role } = payload
+        const jwtToken = authHeaders.split(" ")[1]
 
-        if (role !== "ADMIN") {
+
+        const payload = jwt.verify(jwtToken, process.env.JWT_SECRET)
+
+
+        if (payload.role !== "ADMIN") {
             return res.status(403).json({ error: "Access denied. Admin only" })
         }
+        req.user = payload
 
-        user = {
-            userId, email, role
-        }
-        req.user = user
+        next()
 
-
-    })
-    const isAdmin = await User.findOne({ email: user.email })
-    if (isAdmin.role !== "ADMIN") {
-        return res.status(403).json({ error: "Access denied. Admin only" })
+    } catch (e) {
+        return res.status(401).json({ error: "Invalid JWT Token" })
     }
 
-    next()
+
 
 }
 
 
 export const authViewer = async (req, res, next) => {
 
-    const authHeaders = req.headers['authorization']
-    if (!authHeaders) {
-        return res.status(401).json({ error: "Missing JWT Token" })
-    }
-    const jwtToken = authHeaders.split(" ")[1]
+    try {
 
-    let user;
-    jwt.verify(jwtToken, process.env.JWT_SECRET, (error, payload) => {
-        if (error) {
-            return res.status(401).json({ error: "Invalid JWT Token" })
+        const authHeaders = req.headers['authorization']
+        if (!authHeaders) {
+            return res.status(401).json({ error: "Missing JWT Token" })
         }
+        const jwtToken = authHeaders.split(" ")[1]
 
-        if (!payload.email) {
-            return res.status(401).json({ error: "Invalid JWT Token" })
+
+        const payload = jwt.verify(jwtToken, process.env.JWT_SECRET)
+
+        const roles = ["ADMIN", "ANALYST", "VIEWER"]
+        if (!roles.includes(payload.role)) {
+            return res.status(403).json({ error: "Access denied. Admin , Analyst & Viewer only" })
         }
-        const { email, userId, role } = payload
-        user = {
-            userId, email, role
-        }
-        req.user = user
+        req.user = payload
 
+        next()
 
-    })
+    } catch (e) {
+        return res.status(401).json({ error: "Invalid JWT Token" })
 
-    const isUser = await User.findOne({ email: user.email })
-    if (!isUser) {
-        return res.status(403).json({ error: "Access denied" })
     }
 
-    next()
 
 }
 
@@ -82,36 +70,29 @@ export const authViewer = async (req, res, next) => {
 
 export const authAdminAndAnalyst = async (req, res, next) => {
 
-    const authHeaders = req.headers['authorization']
-    if (!authHeaders) {
-        return res.status(401).json({ error: "Missing JWT Token" })
+    try {
+
+        const authHeaders = req.headers['authorization']
+        if (!authHeaders) {
+            return res.status(401).json({ error: "Missing JWT Token" })
+        }
+        const jwtToken = authHeaders.split(" ")[1]
+
+
+        const payload = jwt.verify(jwtToken, process.env.JWT_SECRET)
+
+        const roles = ["ADMIN", "ANALYST"]
+        if (!roles.includes(payload.role)) {
+            return res.status(403).json({ error: "Access denied. Admin , Analyst only" })
+        }
+        req.user = payload
+
+        next()
+
+    } catch (e) {
+        return res.status(401).json({ error: "Invalid JWT Token" })
+
     }
-    const jwtToken = authHeaders.split(" ")[1]
-
-    let user;
-    jwt.verify(jwtToken, process.env.JWT_SECRET, (error, payload) => {
-        if (error) {
-            return res.status(401).json({ error: "Invalid JWT Token" })
-        }
-        const { email, userId, role } = payload
-
-        if (role === "VIEWER") {
-            return res.status(403).json({ error: "Access denied. Admin and Analyst only" })
-        }
-
-        user = {
-            userId, email, role
-        }
-        req.user = user
-
-
-    })
-    const isAdmin = await User.findOne({ email: user.email })
-    if (isAdmin.role === "VIEWER") {
-        return res.status(403).json({ error: "Access denied. Admin and Analyst only" })
-    }
-
-    next()
 
 }
 
