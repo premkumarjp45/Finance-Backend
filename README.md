@@ -41,6 +41,9 @@ Tools
 
 ## 📂 Folder Structure
 
+## 📂 Folder Structure
+
+```bash
 Finance-Backend/
 │
 ├── config/
@@ -70,6 +73,7 @@ Finance-Backend/
 ├── package.json               # Dependencies & scripts
 ├── server.js                  # Application entry point
 └── README.md                  # Project documentation
+```             # Project documentation
 
 # 1. User and Role Management APIs
 
