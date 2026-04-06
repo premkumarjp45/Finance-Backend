@@ -39,25 +39,37 @@ Tools
 
 ---
 
-##Project Folder Structure
+## 📂 Folder Structure
 
 Finance-Backend/
 │
-├── config/ # Database configuration & environment setup
+├── config/
+│   └── db.js                  # MongoDB connection setup
 │
-├── models/ # Mongoose models (User, Finance, etc.)
+├── models/
+│   ├── User.js                # User schema
+│   └── Finance.js             # Finance schema
 │
-├── controllers/ # Business logic for handling requests
+├── controllers/
+│   ├── userController.js      # Handles user logic
+│   └── financeController.js   # Handles finance logic
 │
-├── middleware/ # Custom middleware (auth, error handling, etc.)
+├── middleware/
+│   ├── authMiddleware.js      # JWT authentication
+│   └── errorMiddleware.js     # Error handling
 │
-├── routes/ # API route definitions
+├── routes/
+│   ├── userRoutes.js          # User-related APIs
+│   └── financeRoutes.js       # Finance-related APIs
 │
-├── utils/ # Helper functions & utilities
+├── utils/
+│   └── helpers.js             # Reusable utility functions
 │
-├── server.js # Entry point of the application
-│
-└── README.md # Project documentation
+├── .env                       # Environment variables
+├── .gitignore                 # Ignored files
+├── package.json               # Dependencies & scripts
+├── server.js                  # Application entry point
+└── README.md                  # Project documentation
 
 # 1. User and Role Management APIs
 
